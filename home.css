@@ -1,0 +1,34 @@
+.hero-body {
+    background-image: url('./Assets/Banner4.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    position: relative; /* Ensure positioning context for absolute positioning of the overlay */
+  }
+  
+  #center-black {
+    position: relative;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.7); /* Adjust the alpha (last value) for transparency */
+    width: 100% !important;
+    padding: 20px; /* Adjust the padding as needed */
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  /* Additional styles for better visibility of text */
+  .title {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  .subtitle {
+    font-size: 1.5rem;
+  }
+
+ marquee{
+    background-color:#363636;
+    font-weight: bold;
+    color:white;
+  }
