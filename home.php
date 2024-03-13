@@ -3,19 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Bulma!</title>
+    <title>Hello Comrade!</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="home.css">
   </head>
   <body>
-    <section class="hero is-danger is-large">
+    <script>
+      alert("BE AWARE OF SCAMS, PLEASE TAKE NOTE, SUPREME LEADER WILL NOT ASK FOR YOUR STATE ID AND PASSWORD. SUPREME LEADER WILL JUST EXECUTE YOU.")
+    </script>
+    <section class="hero is-dark is-large">
         <!-- Hero head: will stick at the top -->
         <div class="hero-head">
           <header class="navbar">
             <div class="container">
               <div class="navbar-brand">
-                <a class="navbar-item">
+                <a class="navbar-item" href="/Project!/">
                   <img src="./Assets/Central_Bank_of_DPRK.svg.png" alt="Logo">
                 </a>
                 <span class="navbar-burger" data-target="navbarMenuHeroC">
@@ -26,10 +29,13 @@
               </div>
               <div id="navbarMenuHeroC" class="navbar-menu">
                 <div class="navbar-end">
-                  <a class="navbar-item is-active">
+                  <a class="navbar-item is-active" href="/Project!/">
                     Login 
                   </a>
-                  <a class="navbar-item">
+                  <a class="navbar-item" href="/Project!/signup">
+                    Sign Up
+                  </a>
+                  <a class="navbar-item" href="/Project!/about">
                     About us
                   </a>
                   <span class="navbar-item">
@@ -82,7 +88,7 @@
                 <div class="column">
                 </div>
                 <div class="column">
-                    <form action="attempt.php" method="POST">
+                    <form action="/Project!/Login-attempt/" method="POST">
                     <div class="field">
                         <p class="control has-icons-left has-icons-right">
                           <input class="input" name="StateID" type="text" placeholder="StateID">
@@ -117,5 +123,20 @@
               </div>
         </div>
       </section>
+      <footer class="footer">
+        <div class="content has-text-centered">
+          <p>
+            <img src="./Assets/Central_Bank_of_DPRK.svg.png"><br><br>
+            <strong>This is made as a meme</strong>, built for one of my web development modules in university. May Kim Fatty the third not smeer VX nerve agent on me.
+        
+          </p>
+        </div>
+      </footer>
+
+
+  
+
+
+
   </body>
 </html>
