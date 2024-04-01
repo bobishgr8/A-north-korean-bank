@@ -239,7 +239,7 @@ $balance = $total_balance - $outstanding;
       </a>
     </li>
     <li>
-      <a>
+      <a href="/Project!/edit_password.php">
         <span class="icon"></span>
         <span>Edit password</span>
       </a>

@@ -3,7 +3,7 @@
 -[x] Sign up
 -[x] Log in
 -[ ] Log out
--[ ] Edit profile
+-[x] Edit profile
 -[x] View account(s) and details
 -[x] Deposit money
 -[x] Withdraw money

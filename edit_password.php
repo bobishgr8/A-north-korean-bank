@@ -15,8 +15,12 @@ if(array_key_exists("inputCheck",$_POST)){
     if(password_verify($_POST["OLDpassword"],$curr_pw)){
         if($_POST["NEWpassword1"] == $_POST["NEWpassword2"]){
             $user->update_pw($stateID,password_hash($_POST["NEWpassword1"],PASSWORD_DEFAULT));
-
+            $status = true;
+        }else{
+          $status = false;
         }
+    }else{
+      $status = "wrong current password";
     }
 }
 
@@ -134,18 +138,18 @@ if(array_key_exists("inputCheck",$_POST)){
                     <?php
                     if($status === true){
                         echo ' <div class="notification is-success"><button class="delete"></button>
-                        Withdrawal Successful. Proceed to your local bank branch with your StateID to collect your cash.
-                        <strong>REMEMBER TO NOT USE THIS TO ENGAGE IN CAPITALIST ACTIVITIES.</strong>
+                        Edit password successful
                         <a href="/Project!/landing.php">click here to return</a></div>';
                     }elseif($status === "first_time"){
                         echo "";
-                    }elseif($status === "NO MONEY NO HONEY"){
-                      echo ' <div class="notification is-danger"><button class="delete"></button>
-                      Withdrawal Unsuccessful. <strong>YOU DO NOT HAVE THIS MUCH MONEY!!</strong>
-                      <a href="/Project!/landing.php">click here to return</a></div>';
-                    }else{
+                    }elseif($status === "wrong current password"){
+                        echo ' <div class="notification is-success"><button class="delete"></button>
+                        Edit password unsuccessful. Make sure your current password is correct!
+                        <a href="/Project!/landing.php">click here to return</a></div>';
+                    }
+                    else{
                         echo ' <div class="notification is-danger"><button class="delete"></button>
-                        Withdrawal Unsuccessful.
+                        Edit Unsuccessful. Make sure both your new passwords are the same!
                         <a href="/Project!/landing.php">click here to return</a></div>';
                     }
                     
@@ -180,7 +184,7 @@ if(array_key_exists("inputCheck",$_POST)){
                       </div>
                       <div class="field is-grouped is-grouped-centered">
                         <p class="control">
-                            <input type="submit" value="Sign Up" name="inputCheck" class="button is-success">
+                            <input type="submit" value="Submit" name="inputCheck" class="button is-success">
                         </p>
                         <p class="control">
                             <a class="button is-light">
