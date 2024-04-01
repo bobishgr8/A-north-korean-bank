@@ -49,13 +49,13 @@ var_dump($_SESSION);
                   <a class="navbar-item is-active" href="/Project!/applyLoan.php">
                     Apply for loan by Kimmy
                   </a>
-                  <a class="navbar-item" href="/Project!/BUILD PAGE">
+                  <a class="navbar-item" href="/Project!/repayloan.php">
                     Pay bills to Kimmy
                   </a>
                   <a class="navbar-item" href="/Project!/feedback.php">
                     Talk to VERY FRIENDLY support
                   </a>
-                  <a class="navbar-item" href="/Project!/BUILD PAGE">
+                  <a class="navbar-item" href="/Project!/logout.php">
                     Logout
                   </a>
                   <span class="navbar-item">
@@ -95,7 +95,7 @@ var_dump($_SESSION);
             <a href="/Project!/applyLoan.php">Apply for loan by Kimmy</a>
           </li>
           <li>
-            <a href="/Project!/BUILD PAGE">Pay bills to Kimmy</a>
+            <a href="/Project!/repayloan.php">Pay bills to Kimmy</a>
           </li>
           <li>
             <a href="/Project!/feedback.php">Talk to VERY FRIENDLY support</a>

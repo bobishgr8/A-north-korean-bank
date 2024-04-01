@@ -2,6 +2,19 @@
 require_once "condom.php";
 echo "YOU LOGIN LEGALLY";
 var_dump($_SESSION);
+require_once "userDAO.php";
+require_once "loanAccountDao.php";
+$user = new userDAO;
+$outstanding = $user->find_outstanding($_SESSION["bankBoi"]);
+if($outstanding != null){
+  $outstanding = $outstanding[0]["SUM(t3.loanAmount)"];
+}else{
+  $outstanding = 0;
+}
+// $outstanding = $user->find_outstanding($_SESSION["bankBoi"])
+$baller = new loanAccountDAO;
+$data = $baller->findAllLoans($_SESSION["bankBoi"]);
+
 ?>
 
 <!DOCTYPE html>
@@ -49,17 +62,17 @@ var_dump($_SESSION);
                   <a class="navbar-item" href="/Project!/applyLoan.php">
                     Apply for loan by Kimmy
                   </a>
-                  <a class="navbar-item" href="/Project!/repayloan.php">
+                  <a class="navbar-item is-active" href="/Project!/BUILD PAGE">
                     Pay bills to Kimmy
                   </a>
-                  <a class="navbar-item is-active" href="/Project!/feedback.php">
+                  <a class="navbar-item" href="/Project!/feedback.php">
                     Talk to VERY FRIENDLY support
                   </a>
                   <a class="navbar-item" href="/Project!/logout.php">
                     Logout
                   </a>
                   <span class="navbar-item">
-                    <a class="button">
+                    <a class="button" href="https://github.com/bobishgr8/A-north-korean-bank">
                       <span class="icon">
                         <i class="fab fa-github"></i>
                       </span>
@@ -94,10 +107,10 @@ var_dump($_SESSION);
           <li>
             <a href="/Project!/applyLoan.php">Apply for loan by Kimmy</a>
           </li>
-          <li>
-            <a href="/Project!/BUILD PAGE">Pay bills to Kimmy</a>
-          </li>
           <li class="is-active">
+            <a href="/Project!/repayloan.php">Pay bills to Kimmy</a>
+          </li>
+          <li>
             <a href="/Project!/feedback.php">Talk to VERY FRIENDLY support</a>
           </li> 
         </ul>
@@ -105,39 +118,79 @@ var_dump($_SESSION);
     </nav>
   </div>
 </section>
-<!-- Business logic area -->
-
 <section class="section">
-        <div class="block">
-            <div class="columns">
-                <div class="column">
-                </div>
-                <div class="column">
-                    <form action="./feedback_process.php" method="POST">
-                      <br><br>
-                      <div class="field">
-                        <p class="heading is-3">Please tell me more about your problem and we will send an anti-aircraft missile to your house in 3-5 juche days</p>
-                        <textarea class="textarea is-warning" name="content" placeholder="Warning! Do not SPEAK UNWISELY." required></textarea>
-                      </div>
-                      <div class="field is-grouped is-grouped-centered">
-                        <p class="control">
-                            <input type="submit" value="Submit" name="feedback" class="button is-success">
-                        </p>
-                        <p class="control">
-                            <a class="button is-light">
-                              Cancel
-                            </a>
-                      </div>
-                    </form>
-                    </div>
-                
-                <div class="column">
-                  <!-- Third column -->
-                </div>
-              </div>
+    <p class="level-item has-text-centered title">
+        Total owed to Kimmy The Great:
+    </p>
+<nav class="level">
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading is-warning">Outstanding loans</p>
+      <p class="title is-warning"><?php echo "$outstanding"?>₩</p>
+    </div>
+    </div>
+  </div>
+</nav>
+<!-- this is where the business logic goes -->
+<div class="columns">
+  <div class="column">
+    <div class="card">
+    <div class="card-content">
+        <div class="media">
+            <div class="media-content">
+                <p class="title">Your loans </p>
+            </div>
         </div>
-      </section>
-
+        <div class="content">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>LoanID</th>
+                <th>Loan Amount</th>
+                <th>Approved Reason</th>
+                <th>Paid?</th>
+                <th>Pay</th>
+            </tr>
+            <?php
+              $user = new UserDAO;
+              $transactions = $user->recentTransactions($_SESSION["bankBoi"]);
+              foreach($data as $value){
+                $temp = $value->format_loans();
+                // var_dump($temp);
+                if($temp[3] == "No"){
+                  echo "<tr style='background-color: #F59794'>";
+                  echo "<td>{$temp[0]}</td>";
+                  echo "<td>{$temp[1]}</td>";
+                  echo "<td>{$temp[2]}</td>";
+                  echo "<td>{$temp[3]}</td>";
+                  echo "<td>
+                  <form action='processLoanPayment.php' method='POST'>
+                        <input type='text' value={$temp[0]} name='LoanID' hidden>
+                        <input type='text' value={$temp[1]} name='Amount' hidden>
+                        <input type='submit' value='PAY NOW' name='inputcheck' class='button is-success'>
+                    </form>
+                  </td>";
+                  echo "</tr>";
+                }else{
+                  echo "<tr style='background-color: #A8FFD9'>";
+                  echo "<td>{$temp[0]}</td>";
+                  echo "<td>{$temp[1]}</td>";
+                  echo "<td>{$temp[2]}</td>";
+                  echo "<td>{$temp[3]}</td>";
+                  echo "<td>&nbsp;</td>";
+                  echo "</tr>";
+                }
+              }
+              // var_dump($transactions);
+            ?>
+            </thead>
+            
+        </table>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
 
 
 

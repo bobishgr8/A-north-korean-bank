@@ -41,7 +41,6 @@ class userDAO{
         $statement->setFetchMode(PDO::FETCH_ASSOC);
         $statement->execute();
         $res = $statement->fetchAll();
-        // var_dump($res);
         $statement = null;
         $PDO = null;
         return $res[0]["hashPW"];

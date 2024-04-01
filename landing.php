@@ -62,17 +62,17 @@ $balance = $total_balance - $outstanding;
                   <a class="navbar-item" href="/Project!/applyLoan.php">
                     Apply for loan by Kimmy
                   </a>
-                  <a class="navbar-item" href="/Project!/BUILD PAGE">
+                  <a class="navbar-item" href="/Project!/repayloan.php">
                     Pay bills to Kimmy
                   </a>
                   <a class="navbar-item" href="/Project!/feedback.php">
                     Talk to VERY FRIENDLY support
                   </a>
-                  <a class="navbar-item" href="/Project!/BUILD PAGE">
+                  <a class="navbar-item" href="/Project!/logout.php">
                     Logout
                   </a>
                   <span class="navbar-item">
-                    <a class="button">
+                    <a class="button" href="https://github.com/bobishgr8/A-north-korean-bank">
                       <span class="icon">
                         <i class="fab fa-github"></i>
                       </span>
@@ -108,7 +108,7 @@ $balance = $total_balance - $outstanding;
             <a href="/Project!/applyLoan.php">Apply for loan by Kimmy</a>
           </li>
           <li>
-            <a href="/Project!/BUILD PAGE">Pay bills to Kimmy</a>
+            <a href="/Project!/repayloan.php">Pay bills to Kimmy</a>
           </li>
           <li>
             <a href="/Project!/feedback.php">Talk to VERY FRIENDLY support</a>
