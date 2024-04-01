@@ -1,7 +1,20 @@
 <?php
 require_once "condom.php";
-echo "YOU MADE IT INTO LANDING PAGE";
+echo "YOU LOGIN LEGALLY";
 var_dump($_SESSION);
+require_once "userDAO.php";
+$user = new userDAO;
+$outstanding = $user->find_outstanding($_SESSION["bankBoi"]);
+$total_balance = $user->find_totalBalance($_SESSION["bankBoi"]);
+$total_transactions = $user->find_totalTransaction($_SESSION["bankBoi"]);
+if($outstanding != null){
+  $outstanding = $outstanding[0]["SUM(t3.loanAmount)"];
+}else{
+  $outstanding = 0;
+}
+$balance = $total_balance - $outstanding;
+// $outstanding = $user->find_outstanding($_SESSION["bankBoi"])
+
 ?>
 
 <!DOCTYPE html>
@@ -46,13 +59,13 @@ var_dump($_SESSION);
                   <a class="navbar-item is-active" href="/Project!/landing.php">
                     Your account
                   </a>
-                  <a class="navbar-item" href="/Project!/BUILD PAGE">
+                  <a class="navbar-item" href="/Project!/applyLoan.php">
                     Apply for loan by Kimmy
                   </a>
                   <a class="navbar-item" href="/Project!/BUILD PAGE">
                     Pay bills to Kimmy
                   </a>
-                  <a class="navbar-item" href="/Project!/BUILD PAGE">
+                  <a class="navbar-item" href="/Project!/feedback.php">
                     Talk to VERY FRIENDLY support
                   </a>
                   <a class="navbar-item" href="/Project!/BUILD PAGE">
@@ -92,13 +105,13 @@ var_dump($_SESSION);
             <a href="/Project!/landing.php">Your account</a>
           </li>
           <li>
-            <a href="/Project!/BUILD PAGE">Apply for loan by Kimmy</a>
+            <a href="/Project!/applyLoan.php">Apply for loan by Kimmy</a>
           </li>
           <li>
             <a href="/Project!/BUILD PAGE">Pay bills to Kimmy</a>
           </li>
           <li>
-            <a href="/Project!/BUILD PAGE">Talk to VERY FRIENDLY support</a>
+            <a href="/Project!/feedback.php">Talk to VERY FRIENDLY support</a>
           </li> 
         </ul>
       </div>
@@ -113,25 +126,25 @@ var_dump($_SESSION);
   <div class="level-item has-text-centered">
     <div>
       <p class="heading">Available Balance</p>
-      <p class="title">3,456₩</p>
+      <p class="title"><?php echo "$total_balance"?>₩</p>
     </div>
   </div>
   <div class="level-item has-text-centered">
     <div>
       <p class="heading is-warning">Outstanding loans</p>
-      <p class="title is-warning">20₩</p>
+      <p class="title is-warning"><?php echo "$outstanding"?>₩</p>
     </div>
   </div>
   <div class="level-item has-text-centered">
     <div>
       <p class="heading">Balance</p>
-      <p class="title">3,436₩</p>
+      <p class="title"><?php echo "{$balance}"?>₩</p>
     </div>
   </div>
   <div class="level-item has-text-centered">
     <div>
       <p class="heading">Transaction count</p>
-      <p class="title">234</p>
+      <p class="title"><?php echo "$total_transactions"?></p>
     </div>
   </div>
 </nav>
@@ -143,8 +156,7 @@ var_dump($_SESSION);
     <div class="media">
       <div class="media-content">
         <p class="title">Your account: </p>
-        <!-- TODO, generate account number dynamically -->
-        <p class="subtitle">Balance: 50000₩ </p>
+        <p class="subtitle">Balance: <?php echo "$total_balance"?>₩ </p>
       </div>
     </div>
 
@@ -172,9 +184,31 @@ var_dump($_SESSION);
             <tr>
                 <th>Transaction type</th>
                 <th>Amount</th>
-                <th>Description</th>
+                <th>Transaction ID</th>
             </tr>
+            <?php
+              $user = new UserDAO;
+              $transactions = $user->recentTransactions($_SESSION["bankBoi"]);
+              foreach($transactions as $transaction){
+                $data = $transaction->format_transactions();
+                if($data[0] == "Deposit"){
+                  echo "<tr style='background-color: #A8FFD9'>";
+                  echo "<td><strong>{$data[0]}</strong></td>";
+                  echo "<td>{$data[1]}</td>";
+                  echo "<td>{$data[2]}</td>";
+                echo "</tr>";
+                }else{
+                  echo "<tr style='background-color: #F59794'>";
+                  echo "<td><strong>{$data[0]}</strong></td>";
+                  echo "<td>{$data[1]}</td>";
+                  echo "<td>{$data[2]}</td>";
+                  echo "</tr>";
+                }
+              }
+              // var_dump($transactions);
+            ?>
             </thead>
+            
         </table>
         </div>
     </div>
@@ -187,21 +221,27 @@ var_dump($_SESSION);
 <div class="tabs is-toggle is-fullwidth is-large">
   <ul>
     <li>
-      <a>
+      <a href="/Project!/deposit_money.php">
         <span class="icon"></span>
         <span>Deposit Money</span>
       </a>
     </li>
     <li>
-      <a>
+      <a href="/Project!/withdrawl_money.php">
         <span class="icon"></span>
         <span>Withdrawal Money</span>
       </a>
     </li>
     <li>
-      <a>
+      <a href="/Project!/transfer_money.php">
         <span class="icon"></span>
         <span>Transfer Money</span>
+      </a>
+    </li>
+    <li>
+      <a>
+        <span class="icon"></span>
+        <span>Edit password</span>
       </a>
     </li>
   </ul>

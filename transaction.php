@@ -1,20 +1,38 @@
 <?php
 class transaction{
-    private $to_acc_no;
-    private $val;
-    private $type;
-    public function __construct($to_acc_no,$val,$type) {
-        $this->to_acc_no = $to_acc_no;
-        $this->val = $val;
-        $this->type = $type;
-    }
-}
+    private $transID;
+    private $accountNumber;
+    private $amount;
+    private $transType;
+    
+    public function __construct($transID,$accountNumber,$amount,$transType) {
+        $this->transID = $transID;
+        $this->accountNumber = $accountNumber; 
+        $this->amount = $amount; 
+        $this->transType = $transType; // D or W
 
-class transfers extends transaction{
-    private $from_acc_no;
-    public function __construct($to_acc_no,$val,$type,$from_acc_no) {
-        parent :: __construct($to_acc_no,$val,$type);
-        $this->from_acc_no = $from_acc_no;
     }
+
+    public function get_transID(){
+        return $this->transID;
+    }
+
+    public function get_accountNumber(){
+        return $this->accountNumber;
+    }
+
+    public function get_amount(){
+        return $this->amount;
+    }
+
+    public function get_transType(){
+        return $this->transType;
+    }
+
+    public function format_transactions(){
+        $mapping = ["D" => "Deposit", "W" => "Withdrawal", "L"=>"Loan"];
+        return [$mapping["{$this->get_transType()}"],$this->get_amount(),$this->get_transID()];
+    }
+    
 }
 ?>
