@@ -1,14 +1,14 @@
 # Functionalities
 ---
--[x] Sign up
--[x] Log in
--[ ] Log out
--[x] Edit profile
--[x] View account(s) and details
--[x] Deposit money
--[x] Withdraw money
--[x] Transfer money
--[ ] Pay bills
--[x] Apply for loans
--[x] Contact customer service
--[ ] And so on…
+- Sign up
+- Log in
+- Log out
+- Edit profile
+- View account(s) and details
+- Deposit money
+- Withdraw money
+- Transfer money
+- Pay bills
+- Apply for loans
+- Contact customer service
+- And so on…
