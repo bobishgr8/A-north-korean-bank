@@ -95,7 +95,7 @@ var_dump($_SESSION);
             <a href="/Project!/applyLoan.php">Apply for loan by Kimmy</a>
           </li>
           <li>
-            <a href="/Project!/BUILD PAGE">Pay bills to Kimmy</a>
+            <a href="/Project!/repayloan.php">Pay bills to Kimmy</a>
           </li>
           <li class="is-active">
             <a href="/Project!/feedback.php">Talk to VERY FRIENDLY support</a>

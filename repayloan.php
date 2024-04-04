@@ -62,7 +62,7 @@ $data = $baller->findAllLoans($_SESSION["bankBoi"]);
                   <a class="navbar-item" href="/Project!/applyLoan.php">
                     Apply for loan by Kimmy
                   </a>
-                  <a class="navbar-item is-active" href="/Project!/BUILD PAGE">
+                  <a class="navbar-item is-active" href="/Project!/repayloan.php">
                     Pay bills to Kimmy
                   </a>
                   <a class="navbar-item" href="/Project!/feedback.php">
